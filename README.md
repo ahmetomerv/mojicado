@@ -16,7 +16,7 @@ A beautiful, interactive emoji wallpaper generator built with vanilla JavaScript
 
 ## 🚀 Live Demo
 
-Visit the live application: [mojicado](https://your-domain.com)
+Visit the live app: [mojicado](https://mojicado.ahmetomer.net)
 
 ## 🛠️ Technologies
 
@@ -61,7 +61,7 @@ Visit the live application: [mojicado](https://your-domain.com)
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/mojicado.git
+   git clone https://github.com/ahmetomerv/mojicado.git
    cd mojicado
    ```
 
@@ -126,7 +126,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 🙏 Credits
 
 ### Created by
-- **@eswordert** - [Twitter](https://x.com/eswordert)
+- **@eswordert** - [X/Twitter](https://x.com/eswordert)
 
 ### Original Project
 This project was inspired by and uses the excellent work from **[alcor](https://github.com/alcor)**:
@@ -144,6 +144,6 @@ This project was inspired by and uses the excellent work from **[alcor](https://
 
 **Made with ❤️ and lots of 🥑**
 
-[Try it now!](https://your-domain.com)
+[Try it now!](https://mojicado.ahmetomer.net/)
 
 </div>

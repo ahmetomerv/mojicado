@@ -379,7 +379,6 @@ input[type="color"]::-webkit-color-swatch {
 .color-generate-btn {
   width: 60px;
   height: 60px;
-  min-height: -webkit-fill-available;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   background: var(--card-background);
@@ -568,7 +567,6 @@ body.fullscreen canvas {
 .emoji-generate-btn {
   width: 48px;
   height: 48px;
-  min-height: -webkit-fill-available;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   background: var(--card-background);

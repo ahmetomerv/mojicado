@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mojicado - Emoji Wallpaper</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
+  <link rel="manifest" href="./assets/site.webmanifest">
+  
+  <link rel="stylesheet" href="./style.css">
+  <meta property="og:title" content="mojicado - An Emoji Wallpaper" />
+  <meta property="og:description" content="Generate wallpaper for your device with colorful emoji" />
+</head>
+<body class="loading">
+
+  <div class="container">
+    <div class="app-title">
+      <h1 class="app-name">
+        <a href="index.html" class="app-link">🥑 mojicado</a>
+        <span class="tagline">treat yourself an emoji wallpaper</span>
+      </h1>
+      <button type="button" class="credits-button" id="creditsBtn" title="View Credits">
+        Credits
+      </button>
+    </div>
+
+    <div class="main-layout">
+      <!-- Left Sidebar - Control Panel -->
+      <aside class="control-sidebar">
+        <form id="form" class="control-panel">
+          <!-- Title Section -->
+          <div class="control-group">
+            <label for="title" class="control-label">Title</label>
+            <input id="title" name="t" type="text" placeholder="Untitled Wallpaper" value="">
+          </div>
+
+          <!-- Emoji Section -->
+          <div class="control-group">
+            <label for="emojiPicker" class="control-label">Emojis</label>
+            <div class="emoji-input-group">
+              <input id="emojiPicker" name="emoji" type="text" placeholder="🍌🍓🍊🍇" value="🍌🍓🍊🍇">
+              <button type="button" class="emoji-generate-btn" id="generateEmojis" title="Generate random emojis">
+                🎲
+              </button>
+            </div>
+          </div>
+
+          <!-- Pattern Section -->
+          <div class="control-group">
+            <label for="patternPicker" class="control-label">Pattern Style</label>
+            <div class="select-wrapper">
+              <select id="patternPicker" name="pattern">
+                <option value="grid">Grid</option>
+                <option value="diamond">Diamonds</option>
+                <option value="hex">Hexes</option>
+                <option value="spiral">Spirals</option>
+                <option value="scalespiral">Swirl</option>
+                <option value="random">Sprinkle</option>
+                <option value="many">Multitudes</option>
+                <option value="foam" selected>Bubbles</option>
+                <option value="stacks">Stacks</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Order Section -->
+          <div class="control-group">
+            <label for="orderPicker" class="control-label">Arrangement</label>
+            <div class="select-wrapper">
+              <select id="orderPicker" name="order">
+                <option value="ordered">Ordered</option>
+                <option value="alternating">Alternating</option>
+                <option value="random" selected>Random</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Style Section -->
+          <div class="control-group">
+            <label for="texture" class="control-label">Background Style</label>
+            <div class="select-wrapper">
+              <select id="texture" name="texture">
+                <option value="flat">Solid Color</option>
+                <option value="gradient" selected>Gradient</option>
+                <!-- <option value="monochrome">Monochrome</option> -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Color Section -->
+          <div class="control-group">
+            <label for="colorPicker" class="control-label">Background Color</label>
+            <div class="color-wrapper">
+              <input id="colorPicker" name="color" type="color" onInput="setColor(this);" value="#ffe7bd">
+              <button type="button" class="color-generate-btn" id="generateColor" title="Generate random color">
+                🎨
+              </button>
+            </div>
+          </div>
+
+          <!-- Scale Section -->
+          <div class="control-group">
+            <label for="scalePicker" class="control-label">Scale</label>
+            <div class="select-wrapper">
+              <select id="scalePicker" name="scale">
+                <option value="0.85">Compact</option>
+                <option value="1.0" selected>Cozy</option>
+                <option value="1.25">Comfortable</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Size Section -->
+          <div class="control-group">
+            <label for="sizePicker" class="control-label">Size</label>
+            <div class="select-wrapper">
+              <select id="sizePicker">
+                <option value="*" selected>This Screen</option>
+                <option value="page">This Page</option>
+                <option value="1500x500">Cover Image</option>
+                <option value="1920x1080">Virtual Background</option>
+                <!-- <option value="1600x1600">Square</option> -->
+              </select>
+            </div>
+          </div>
+        </form>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <canvas id="canvas"></canvas>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button type="button" class="button secondary" id="copy">
+            Copy Link
+          </button>
+          <a id="download-link" class="button primary">
+            <span id="download-name">Download</span>
+          </a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Credits Modal -->
+  <div id="creditsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Credits</h2>
+        <button type="button" class="modal-close" id="closeCreditsModal">&times;</button>
+      </div>
+        <div class="modal-body">
+          <div class="credits-section">
+            <p>Created by <a href="https://x.com/eswordert" target="_blank" rel="noopener noreferrer">@eswordert</a></p>
+            <ul>
+              <li>GitHub: <a href="" target="_blank" rel="noopener noreferrer"></a></li>
+            </ul>
+          </div>
+
+          <div class="credits-section">
+            <h3>Original Project</h3>
+            <p>This project was inspired by and uses the excellent work from by <a href="https://github.com/alcor" target="_blank" rel="noopener noreferrer">alcor</a>:</p>
+            <ul>
+              <li>GitHub: <a href="https://github.com/alcor/emoji-supply" target="_blank" rel="noopener noreferrer">https://github.com/alcor/emoji-supply</a></li>
+              <li>Website: <a href="https://emoji.supply/wallpaper" target="_blank" rel="noopener noreferrer">https://emoji.supply/wallpaper</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="./runes.js"></script>
+  <script src="./script.js"></script>
+
+</body>
+</html>
